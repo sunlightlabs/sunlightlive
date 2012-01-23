@@ -8,14 +8,14 @@ set :environment, (ENV['target'] || 'staging')
 set :user, 'datajam'
 set :application, user
 set :deploy_to, "/projects/datajam/www"
-set :repository,  "git@github.com:sunlightlabs/datajam.git"
+set :repository,  "git@github.com:sunlightlabs/sunlightlive.git"
 set :scm, 'git'
 set :use_sudo, false
 set :deploy_via, :remote_cache
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
 
 if environment == 'production'
-  set :domain, "sunlightlive.com"
+  set :domain, "ec2-107-20-76-29.compute-1.amazonaws.com"
 else
   set :domain, "staging.sunlightlive.com"
 end
@@ -37,7 +37,7 @@ end
 namespace :unicorn do
   desc "start unicorn"
   task :start, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && unicorn_rails -c #{current_path}/config/unicorn.rb -E production -D"
+    run "cd #{current_path} && bundle exec unicorn_rails -c #{current_path}/config/unicorn.rb -E production -D"
   end
   desc "stop unicorn"
   task :stop, :roles => :app, :except => { :no_release => true } do
