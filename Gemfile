@@ -20,6 +20,7 @@ gem 'nokogiri',         '~> 1.5'
 gem 'hbs',              '~> 0.1', require: 'handlebars'
 gem 'formatize',        '~> 1.0'
 gem 'mini_magick',      '~> 3.4'
+gem 'datajam_chat', :git => 'git://github.com/sunlightlabs/datajam_chat.git'
 
 group :development do
   gem 'map_by_method'
